@@ -1,0 +1,127 @@
+html{
+    /* margin: 0;
+    padding: 0; */
+    height: 100vh;
+    /* background-color: aqua; */
+    background-image: url(background.jpg);
+    background-size: 100% 100%   ;
+    color: aliceblue;
+
+
+}
+
+
+.Register, .Login{
+    /* background-image: url(background.jpg); */
+    /* background-color: aqua; */
+    background-size: 100% 100%   ;
+
+}
+
+.form, .home nav{
+    
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.form input{
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    font-size: 15px;
+}
+
+.form button{
+    
+    width: 100px;
+    height: 40px;
+    border-radius: 1px 1px black;
+}
+
+.home{
+       display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+/* .home a, .nav-bar a{
+    padding: 5px;
+    margin: 5px;
+    background: blueviolet;
+    color: white;
+    text-decoration: none;
+} */
+
+/* .nav-btn{
+ 
+    color: black;
+    margin: 5px;
+    font-size: 16px;
+    padding: 16px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+} */
+
+.nav-bar{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form .error {
+    color: red;
+}
+
+.form .success {
+    color: green;
+}
+
+.todos, .add, .get{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.todo-text{
+    text-align: center;
+}
+
+.todos .item {
+    padding: 5px;
+    color:#7feaf6;
+    display: inline-block;
+    min-width: 70px;
+    font-size: 20px;
+     /* width: 80px; */
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.todos button, .add-btn, .get-btn, .nav-btn, .form button  {
+    color: black;
+    margin: 5px;
+    font-size: 16px;
+    padding: 13px 20px;
+    /* max-width: 100px; */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    /* width: auto;
+    height: 30px;
+     border-radius: 1px 1px black; 
+    margin: 5px; */
+}
+
+input[type="text" i], input[type="password"]{
+    width:220px;
+    height: 35px;
+}
