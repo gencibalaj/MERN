@@ -35,11 +35,9 @@ function Todos() {
     useEffect(() => {
         (async () => {
             if (!auth.token || auth.token === undefined) {
-                // window.alert('In order to view todos you should Login!')
                 return navigate("/login")
             }
             const todos = await getTodos(auth.token)
-            // const todos2 = await getTodos(token);
             setTodos(todos.todos);
             setLoading(false);
         })()
@@ -57,8 +55,7 @@ function Todos() {
             let indexToRemove = todos.indexOf(todoToRemove)
             let result = todos.filter((data, idx) => idx !== indexToRemove)
             setTodos(result)
-            // window.location.reload(true)
-            // setTodos(todos.pop(todo))
+            
             return await response.json()
         } catch (error) {
             throw new Error('Could not communicate with the server!')
@@ -76,11 +73,9 @@ function Todos() {
                 }
             })
 
-            // setTodos(todos.pop(todo))
             let newList = [...todos, todo]
             setTodos(newList)
-            // console.log(todos)
-            // window.location.reload(false)
+           
             return await response.json()
         } catch (error) {
             throw new Error('Could not communicate with the server!')
@@ -111,21 +106,18 @@ function Todos() {
                 <button className='nav-btn'><Link to="/" >Home</Link></button>
                 <button className="nav-btn" onClick={logOut}>Log Out</button>
 
-                {/* <button><Navigate to="">Home</Navigate></button> */}
 
             </nav>
             <h1 className="todo-text"> Your todo list: </h1>
 
-            <ul className="todos">
+            <ul className="todos" >
                 {
                     todos && todos.map((t, i) => {
                         return (
                             <>
                                 <li key={i.toString()}>
-
                                     <span className="item" >{t}</span>
                                     <button className="delete-btn" onClick={() => deleteTodo(t)}>Remove</button>
-                                    {/* <button className="edit-btn" onClick={() => update(t)}>Remove</button> */}
                                 </li>
                             </>
                         )
@@ -135,12 +127,8 @@ function Todos() {
             <div className="add">
                 <input type="text" placeholder='type todo' onChange={(e) => { setNewTodo(e.target.value) }} />
                 <button className="add-btn" onClick={() => newTodo ? add(newTodo) : alert("Todo input should be filled!")}>Add new Todo</button>
-                {/* <button onClick={() => handleEditClick(todo)}>Edit</button> */}
             </div>
-            {/* <div className="get">
-                    <button className="get-btn" onClick={()=> document.getElementsByClassName('nextTodo')}>Get next Todo</button>
-                    <div className="nextTodo" style={{display: 'none'}}>Your next todo is: {todos.shift()}</div>
-                </div> */}
+            
         </>
 
     ) : <h2>loading</h2>;

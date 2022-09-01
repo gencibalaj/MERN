@@ -1,12 +1,16 @@
+const validator = require('validator')
 
 module.exports = {
     validateLoginInput(data) {
         let errors = {}
         if (!data.email || data.email == "") {
-            errors.email = "Email is required!"
+            errors.emailEmpty = "Email is empty!"
         }
-        if (!data.password || data.password == "") {
-            errors.password = "Password is required!"
+        if (!validator.isEmail(data.email)) {
+            errors.emailFormat = "Email format is not valid!"
+        }
+        if (validator.isEmpty(data.password)) {
+            errors.password = "Password is empty!"
         }
         return {
             errors,

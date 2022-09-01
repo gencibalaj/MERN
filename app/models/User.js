@@ -11,7 +11,6 @@ var UserSchema = new Schema({
     todo: { type: [], default: [] },
 });
 
-// Compile model from schema
 var User = mongoose.model('users', UserSchema);
 
 module.exports = User;

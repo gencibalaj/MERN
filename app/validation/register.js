@@ -1,23 +1,30 @@
+const validator = require('validator')
 
 module.exports = {
     validateRegisterInput(data) {
         let errors = {}
         if (!data.email || data.email == "") {
-            errors.email = "Email is required!"
+            errors.email = "Email can not be blank!"
         }
-        if (!data.first_name || data.first_name == "") {
+        if (!validator.isEmail(data.email)) {
+            errors.emailFormat = "Email format is not valid!"
+        }
+        if (validator.isEmpty(data.first_name)) {
             errors.first_name = "First name is required!"
         }
-        if (!data.last_name || data.last_name == "") {
+        if (validator.isEmpty(data.last_name)) {
             errors.last_name = "Last name is required!"
         }
-        if (!data.password || data.password == "" || !data.password.match(/^[A-Za-z]\w{7,14}$/)) {
-            errors.password = "Password should contain lower and upper case chars and min length 7!"
+        if (validator.isEmpty(data.password)) {
+            errors.password = "Password can not be blank!"
         }
-        if (!data.passwordConfirmation || data.passwordConfirmation == "" || data.passwordConfirmation != data.password ) {
+        if (!data.password.match(/^[A-Za-z]\w{7,14}$/)) {
+            errors.passwordFormat = "Password should contain lower and upper case chars and min length 7!"
+        }
+        if (data.passwordConfirmation != data.password ) {
             errors.passwordConfirmation = "Password Confirmation not matching or empty!"
         }
-        if (!data.birthday) {
+        if (validator.isEmpty(data.birthday)) {
             errors.birthday = "No date provided"
         }
         return {

@@ -59,7 +59,6 @@ function Login() {
         <>
             <nav className='nav-bar'>
                 <button className='nav-btn'><Link to="/register" >Sign Up</Link></button>
-                {/* <button className='nav-btn'> <Link to="/todos" >Todos</Link></button> */}
                 <button className='nav-btn'><Link to="/" >Home</Link></button>
 
             </nav>

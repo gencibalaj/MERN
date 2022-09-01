@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
-// const {JWT_SECRET_KEY} = require
 
 const User = require('../models/User')
 const { validateRegisterInput } = require('../validation/register')

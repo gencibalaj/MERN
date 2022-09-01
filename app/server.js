@@ -28,10 +28,9 @@ app.get('/', (req, res) => {
     res.send("Welcome to fsch app")
 })
 
-app.use('/api/users', users) //done
-app.use('/api/profile', profile) //done
-app.use('/api/todos', todos) //inprogress
-
+app.use('/api/users', users) 
+app.use('/api/profile', profile) 
+app.use('/api/todos', todos) 
 app.use((req, res) => {
     res.status(404).json({
         success: false,

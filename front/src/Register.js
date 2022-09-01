@@ -11,7 +11,6 @@ function Register() {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [birthday, setBirthday] = useState("")
-    // const [submited, setSubmited] = useState(false)
     const [res, setRes] = useState("")
     const navigate = useNavigate()
 
@@ -68,11 +67,13 @@ function Register() {
                     <label>Email</label>
                     <input type="text" placeholder='type your email' onChange={(e) => { setEmailReg(e.target.value) }} />
                     {res.message && res.message.email && <p className='error'>{res.message.email}</p>}
+                    {res.message && res.message.emailFormat && <p className='error'>{res.message.emailFormat}</p>}
                     {res.success === false && <p className='error'>{res.errors}</p>}
 
                     <label>Password</label>
                     <input type="password" placeholder='type your password' onChange={(e) => { setPasswordReg(e.target.value) }} />
                     {res.message && res.message.password && <p className='error'>{res.message.password}</p>}
+                    {res.message && res.message.passwordFormat && <p className='error'>{res.message.passwordFormat}</p>}
 
                     <label>Password Confirm</label>
                     <input type="password" placeholder='confirm your password' onChange={(e) => { setPasswordConfirm(e.target.value) }} />

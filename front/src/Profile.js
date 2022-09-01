@@ -26,13 +26,10 @@ function Profile() {
     useEffect(() => {
         (async () => {
             if (!auth.token) {
-                // window.alert('In order to view todos you should Login!')
                 return navigate("/login")
             }
             const response = await getProfile(auth.token)
-            // console.log(response.profile.email)
             setProfile(response.profile)
-            // const todos2 = await getTodos(token);
         })()
     }, [])
 
