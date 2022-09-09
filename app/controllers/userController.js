@@ -7,7 +7,6 @@ const { validateLoginInput } = require('../validation/login')
 const { hashpassword, genJwt } = require('../helpers/encrypting')
 dotenv.config();
 
-
 const me = async function (req, res) {
     const user = req.user
     if (!user) {
@@ -40,7 +39,7 @@ const register = async function (req, res) {
         })
     }
     try {
-            console.log(req.body)
+        // console.log(req.body)
         const newUser = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
@@ -48,7 +47,7 @@ const register = async function (req, res) {
             password: hashedpassword,
             birthday: req.body.birthday,
         }).save()
-        res.json({
+        res.status(201).json({
             success: true,
             message: 'User registered sucesfully!'
         });
@@ -59,7 +58,6 @@ const register = async function (req, res) {
         })
     }
 }
-
 
 const login = async function (req, res) {
     const { errors, isValid } = validateLoginInput(req.body);
@@ -72,7 +70,7 @@ const login = async function (req, res) {
     const user = await User.findOne({ email: req.body.email })
 
     if (!user || !await bcrypt.compare(req.body.password, user.password)) {
-        return res.json({
+        return res.status(401).json({
             succes: false,
             message: 'Invalid credentials!'
         });
@@ -92,8 +90,6 @@ const login = async function (req, res) {
     }
 
 }
-
-
 
 module.exports = {
     register,

@@ -10,7 +10,7 @@ const hashpassword = async function (password) {
 
 
 const genJwt = async function (user) {
-    let jwtSecretKey = "JWT_SECRET_KEY";
+    let jwtSecretKey = process.env.JWT_SECRET || "JWT_SECRET_KEY";
     const payload = {
         email: user.email,
         time: Date()
