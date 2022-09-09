@@ -26,7 +26,7 @@ const register = async function (req, res) {
     if (!isValid) {
         return res.status(422).json({
             success: false,
-            message: errors
+            message: errors,
         });
     }
     const hashedpassword = await hashpassword(req.body.password);
@@ -46,10 +46,12 @@ const register = async function (req, res) {
             email: req.body.email,
             password: hashedpassword,
             birthday: req.body.birthday,
-        }).save()
+        })
+        const user = await newUser.save()
         res.status(201).json({
             success: true,
-            message: 'User registered sucesfully!'
+            message: 'User registered sucesfully!',
+            user
         });
     } catch (error) {
         return res.status(500).json({
