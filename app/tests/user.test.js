@@ -29,7 +29,7 @@ beforeEach(async () => {
     }).save()
 })
 
-//USERS testing
+//USER register testing
 test('Should signup a new user', async () => {
     const response = await request(app).post('/api/users/register').send(testUser).expect(201)
     const user = await User.findById(response.body.user._id)
@@ -49,8 +49,9 @@ test('Should login and return token', async () => {
         email: 'ggaag@gmail.com',
         password: "Gencibalaj1"
     }).expect(200)
-    token = response._body.token
+    token = response.body.token
 })
+
 
 test('Should not return token because of bad credentials!', async () => {
     const response = await request(app).post('/api/users/login').send({
@@ -62,7 +63,6 @@ test('Should not return token because of bad credentials!', async () => {
 
 
 test('Should return profile of the User', async () => {
-    console.log(token)
     await request(app).get('/api/profile/me').set({ Authorization: `Bearer ${token}` }).expect(200)
 })
 
@@ -85,9 +85,10 @@ test('Should not return todos of a user, without authorization', async () => {
 })
 
 //add a todo
+let testTodo = "GYM"
 test('Should add a todo to the user logged in', async () => {
-    await request(app).post('/api/todos/add/GYM').set({ Authorization: `Bearer ${token}` }).expect(200)
-    const userWithTodo = await User.find({ todo: "GYM" })
+    await request(app).post(`/api/todos/add/${testTodo}`).set({ Authorization: `Bearer ${token}` }).expect(200)
+    const userWithTodo = await User.find({ todo: testTodo })
     expect(userWithTodo.length).not.toEqual(0)
 })
 
@@ -103,3 +104,6 @@ test('Should not remove a todo from the user because no authorization is provide
     await request(app).delete('/api/todos/remove/first').expect(401)
 })
 
+test('Expect 404, bad route', async()=>{
+    await request(app).post('/api/todos/add').expect(404)
+})

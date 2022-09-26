@@ -9,6 +9,8 @@ var UserSchema = new Schema({
     password: { type: String, required: true },
     birthday: { type: Date },
     todo: { type: [], default: [] },
+    active: { type: Boolean, default: false },
+    confirmation_code: { type: String, required: false }
 });
 
 var User = mongoose.model('users', UserSchema);

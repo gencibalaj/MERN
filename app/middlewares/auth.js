@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
         if (!token) {
             throw new Error('Token isn\'t valid!')
         }
-        const decodedToken = jwt.verify(token, "JWT_SECRET_KEY")
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
         req.user = {
             email: decodedToken.email,
         }

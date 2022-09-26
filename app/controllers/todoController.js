@@ -19,7 +19,6 @@ const todos = async function (req, res) {
 
 const add = async function (req, res) {
     try {
-        // const user = await User.findOne({ email: req.user.email })
         const user = await User.findOneAndUpdate(
             { email: req.user.email },
             { $push: { todo: req.params.todo } },
@@ -50,9 +49,6 @@ const add = async function (req, res) {
 
 const update = async function (req, res) {
     try {
-        // console.log(req.params.todo);
-        // console.log(req.params.newTodo);
-        // const user = await User.findOne({ email: req.user.email })
         const user = await User.findOneAndUpdate({ email: req.user.email, todo: { "$in": [req.params.todo] } }, 
         {
             $set: {"todo.$": req.params.newTodo},
@@ -84,7 +80,6 @@ const update = async function (req, res) {
 const remove = async function (req, res) {
     try {
         console.log(req.params.todo)
-        // const user = await User.findOne({ email: req.user.email })
         const user = await User.findOneAndUpdate({ email: req.user.email, todo: { "$in": [req.params.todo] } }, { $pull: { todo: req.params.todo } }, { new: true })
         if (!user) {
             return res.status(404).json({
