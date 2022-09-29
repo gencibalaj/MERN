@@ -12,7 +12,9 @@ const hashpassword = async function (password) {
 const genJwt = async function (user) {
     let jwtSecretKey = process.env.JWT_SECRET || "JWT_SECRET_KEY";
     const payload = {
+        _id: user._id,
         email: user.email,
+        role: user.role,
         time: Date()
     }
     const token = jwt.sign(payload, jwtSecretKey,

@@ -10,8 +10,14 @@ var UserSchema = new Schema({
     birthday: { type: Date },
     todo: { type: [], default: [] },
     active: { type: Boolean, default: false },
-    confirmation_code: { type: String, required: false }
-});
+    confirmation_code: { type: String, required: false },
+    role: {
+        type: String,
+        enum : ['USER','LEADER','HR'],
+        default: 'USER'
+    }});
+
+//todos can be be populated with taskIds from Task model
 
 var User = mongoose.model('users', UserSchema);
 

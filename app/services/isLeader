@@ -1,0 +1,21 @@
+const Team = require('../models/Team')
+
+const isLeader = async function (team, _id) {
+    try {
+
+        console.log(team)
+        const teamInfo = await Team.findOne({ name: team })
+        const teamLeaderId = teamInfo.leader.toString()
+        if (_id !== teamLeaderId) {
+            return false
+        }
+        return true
+
+    } catch (error) {
+        console.log(error)
+        throw new Error("can not define access rights")
+    }
+
+}
+
+module.exports = isLeader

@@ -10,6 +10,21 @@ const { sendEmail } = require('../config/nodemailer.config')
 
 dotenv.config();
 
+const users = async function (req,res){
+    const users = await User.find()
+    if (!users) {
+        return res.status(404).json({
+            success: false,
+            message: "No users!"
+        })
+    }
+    return res.json({
+        success: true,
+        users: users,
+    })
+
+}
+
 const me = async function (req, res) {
     const user = req.user
     if (!user) {
@@ -99,7 +114,13 @@ const login = async function (req, res) {
         });
     }
     try {
-        let token = await genJwt(req.body);
+        let payload ={
+            _id: user._id,
+            email: user.email,
+            role: user.role
+        }
+        // console.log(payload)
+        let token = await genJwt(payload);
         return res.json({
             succes: true,
             message: `Hi ${user.first_name}, You are logged in!`,
@@ -169,10 +190,12 @@ const confirmUser = async function (req, res) {
 
 }
 
+
 module.exports = {
     register,
     login,
     me,
     changePassword,
-    confirmUser
+    confirmUser,
+    users,
 }

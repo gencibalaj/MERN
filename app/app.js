@@ -6,6 +6,8 @@ const cors = require("cors");
 const users = require('./routes/users');
 const profile = require('./routes/profile');
 const todos = require('./routes/todos');
+const teams = require('./routes/teams');
+const tasks = require('./routes/tasks');
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -30,6 +32,8 @@ app.get('/', (req, res) => {
 app.use('/api/users', users) 
 app.use('/api/profile', profile) 
 app.use('/api/todos', todos) 
+app.use('/api/teams', teams) 
+app.use('/api/tasks', tasks)
 app.use((req, res) => {
     res.status(404).json({
         success: false,
